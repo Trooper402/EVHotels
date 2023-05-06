@@ -41,3 +41,13 @@ function getHotels() {
       console.log(error);
     });
 }
+const stationId = "12345"; // replace with the ID of the charging station you want to retrieve information for
+
+fetch(`https://api.plugshare.com/api/v3/stations/${stationId}`)
+  .then((response) => response.json())
+  .then((data) => {
+    // retrieve the make and model of EVs that are compatible with the charging station
+    const compatibleEVs = data.data.attributes.compatible_vehicles;
+    console.log(compatibleEVs);
+  })
+  .catch((error) => console.error(error));
