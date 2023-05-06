@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EV Hotel Finder App</title>
+  </head>
+  <body>
+    <h1>EV Hotel Finder App</h1>
+    <form>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" /><br />
+
+      <label for="speed">Charging Speed:</label>
+      <select id="speed" name="speed">
+        <option value="Level 1">Level 1</option>
+        <option value="Level 2">Level 2</option>
+        <option value="DC Fast">DC Fast</option></select
+      ><br />
+
+      <button type="button" onclick="findHotels()">Find Hotels</button>
+    </form>
+
+    <div id="hotel-list"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
