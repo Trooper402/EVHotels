@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EV Hotel Finder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <h1>EV Hotel Finder</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Find Hotels with EV Charging Stations</h2>
+      <form>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required />
+        <br />
+        <label for="check-in">Check-in:</label>
+        <input type="date" id="check-in" name="check-in" required />
+        <br />
+        <label for="check-out">Check-out:</label>
+        <input type="date" id="check-out" name="check-out" required />
+        <br />
+        <label for="charging-speed">Charging Speed:</label>
+        <select id="charging-speed" name="charging-speed">
+          <option value="any">Any</option>
+          <option value="level1">Level 1</option>
+          <option value="level2">Level 2</option>
+          <option value="dc-fast">DC Fast</option>
+        </select>
+        <br />
+        <button type="submit">Find Hotels</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 EV Hotel Finder</p>
+    </footer>
+  </body>
+</html>
+
+<button id="loginBtn" onclick="showLogin()">Login</button>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="hideLogin()">&times;</span>
+    <h2>Login</h2>
+    <form onsubmit="event.preventDefault(); login();">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function showLogin() {
+    document.getElementById("loginModal").style.display = "block";
+  }
+
+  function hideLogin() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+
+  function login() {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Validation
+    if (!email || !password) {
+      alert("Please provide both email and password.");
+      return;
+    }
+
+    // Sanitization
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPassword = DOMPurify.sanitize(password);
+
+    // TODO: handle login logic using Firebase Authentication API
+  }
+</script>
+
+<a href="signup.html">Signup</a>
