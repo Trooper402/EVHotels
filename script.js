@@ -51,3 +51,32 @@ fetch(`https://api.plugshare.com/api/v3/stations/${stationId}`)
     console.log(compatibleEVs);
   })
   .catch((error) => console.error(error));
+
+const axios = require("axios");
+
+const endpoint =
+  "https://api.expediapartnercentral.com/hotels-service-api/v1.0/hotels";
+
+const apiKey = "YOUR_API_KEY";
+
+const params = {
+  destinationCity: "Seattle",
+  arrivalDate: "2022-05-30",
+  departureDate: "2022-06-02",
+  room1: "A,A",
+};
+
+axios
+  .get(endpoint, {
+    params,
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      Accept: "application/json",
+    },
+  })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
