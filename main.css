@@ -1,0 +1,144 @@
+/* Set the background color of the page */
+body {
+  background-color: #f2f2f2;
+}
+
+/* Style the header */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightblue;
+  padding: 10px 20px;
+}
+
+/* Style the logo */
+h1 {
+  margin: 0;
+}
+
+/* Style the navigation links */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Style the login form */
+.login-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input,
+.login-form select {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-form button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style the main content container for desktop screens */
+@media (min-width: 768px) {
+  main {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Set the width of the location input to 50% */
+  #location {
+    width: 50%;
+  }
+
+  /* Set the width of the check-in and check-out inputs to 25% */
+  #check-in,
+  #check-out {
+    width: 25%;
+  }
+
+  /* Set the margin-right of the check-out input to 0 */
+  #check-out {
+    margin-right: 0;
+  }
+}
+
+/* Style the main content container for mobile screens */
+@media (max-width: 767px) {
+  main {
+    width: 90%;
+    margin: 50px auto;
+  }
+
+  /* Set the width of the location input to 100% */
+  #location {
+    width: 100%;
+  }
+
+  /* Set the width of the check-in and check-out inputs to 100% */
+  #check-in,
+  #check-out {
+    width: 100%;
+  }
+
+  /* Style the login form for mobile screens */
+  .login-form label {
+    display: inline-block;
+    width: 80px;
+  }
+
+  .login-form input {
+    display: inline-block;
+    width: 200px;
+    margin-right: 10px;
+  }
+}
+
+/* Style the Find hotels with EV charging stations section */
+#ev-charging {
+  border: 10px solid black;
+  padding: 10px;
+  margin: 20px 0;
+}
