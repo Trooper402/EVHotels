@@ -1,5 +1,6 @@
 // Get form element and add event listener for form submission
 const form = document.querySelector("#signup-form");
+
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent form from submitting and reloading the page
 
@@ -7,25 +8,37 @@ form.addEventListener("submit", (event) => {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
 
-  // Sanitize email input
+  // Sanitize and validate user input
   const sanitizedEmail = DOMPurify.sanitize(email);
+  const sanitizedPassword = DOMPurify.sanitize(password);
 
-  // Validate email input
   if (!validateEmail(sanitizedEmail)) {
     alert("Please enter a valid email address.");
     return;
   }
 
-  // Sanitize password input
-  const sanitizedPassword = DOMPurify.sanitize(password);
-
-  // Validate password input
   if (!validatePassword(sanitizedPassword)) {
     alert("Please enter a password with at least 6 characters.");
     return;
   }
 
-  // TODO: handle signup logic using Firebase Authentication API
+  // Handle signup logic using Firebase Authentication API
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(`User ${user.email} signed up successfully`);
+      // Clear form inputs
+      form.reset();
+      // Show success message to user
+      alert("Signup successful! You can now log in.");
+    })
+    .catch((error) => {
+      console.error(`Error signing up user: ${error.code} - ${error.message}`);
+      // Display error message to user
+      alert(error.message);
+    });
 });
 
 // Validate email format
@@ -38,14 +51,3 @@ function validateEmail(email) {
 function validatePassword(password) {
   return password.length >= 6;
 }
-firebase
-  .auth()
-  .createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // User sign-up successful, get the user object
-    const user = userCredential.user;
-    console.log(`User ${user.email} signed up successfully`);
-  })
-  .catch((error) => {
-    console.error(`Error signing up user: ${error.code} - ${error.message}`);
-  });

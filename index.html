@@ -4,6 +4,10 @@
     <title>EV Hotel Finder</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
   </head>
   <body>
     <header>
@@ -24,10 +28,10 @@
         <input type="text" id="location" name="location" required />
         <br />
         <label for="check-in">Check-in:</label>
-        <input type="date" id="check-in" name="check-in" required />
+        <input type="text" id="check-in" name="check-in" required readonly />
         <br />
         <label for="check-out">Check-out:</label>
-        <input type="date" id="check-out" name="check-out" required />
+        <input type="text" id="check-out" name="check-out" required readonly />
         <br />
         <label for="charging-speed">Charging Speed:</label>
         <select id="charging-speed" name="charging-speed">
@@ -44,53 +48,25 @@
     <footer>
       <p>&copy; 2023 EV Hotel Finder</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("#check-in", {
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        onClose: function (selectedDates, dateStr, instance) {
+          const checkOutInput = document.getElementById("check-out");
+          const checkOutInstance = flatpickr("#check-out", {
+            minDate: dateStr,
+            dateFormat: "Y-m-d",
+          });
+          checkOutInstance.open();
+        },
+      });
+      flatpickr("#check-out", {
+        minDate: "today",
+        dateFormat: "Y-m-d",
+      });
+    </script>
   </body>
 </html>
-
-<button id="loginBtn" onclick="showLogin()">Login</button>
-
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="hideLogin()">&times;</span>
-    <h2>Login</h2>
-    <form onsubmit="event.preventDefault(); login();">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br />
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required /><br />
-      <button type="submit">Login</button>
-    </form>
-  </div>
-</div>
-
-<script>
-  function showLogin() {
-    document.getElementById("loginModal").style.display = "block";
-  }
-
-  function hideLogin() {
-    document.getElementById("loginModal").style.display = "none";
-  }
-
-  function login() {
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Validation
-    if (!email || !password) {
-      alert("Please provide both email and password.");
-      return;
-    }
-
-    // Sanitization
-    const sanitizedEmail = DOMPurify.sanitize(email);
-    const sanitizedPassword = DOMPurify.sanitize(password);
-
-    // TODO: handle login logic using Firebase Authentication API
-  }
-</script>
-
-<a href="signup.html">Signup</a>

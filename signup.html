@@ -17,6 +17,7 @@
       <button type="submit">Sign up</button>
     </form>
     <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+    <button onclick="location.href='index.html'">Go to Home Page</button>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
     <script src="signup.js"></script>
@@ -45,6 +46,11 @@
           form.submit();
         }
       });
+
+      const firebaseConfig = {
+        // your firebase config
+      };
+      firebase.initializeApp(firebaseConfig);
     </script>
   </body>
 </html>
